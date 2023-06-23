@@ -8,7 +8,7 @@ void main() {
   Store store = Store();
 
   print('''Welcome to the dart store! The store that aims to hit the target!
-  To start adding an item to your cart, type the name!''');
+  To start adding an item to your cart, type the name!\n''');
 
   store.initializeSale();
 
@@ -21,13 +21,13 @@ void main() {
       print(item.toString());
     }
 
-    print('Cart:');
+    print('\nCart:');
 
     for (LineItem item in store.getCart()) {
       print(item.toString());
     }
 
-    print("Enter 'c' to checkout.");
+    print("\nEnter 'c' to checkout.");
 
     stdout.write('\nItem: ');
     String? item = stdin.readLineSync();
@@ -40,7 +40,7 @@ void main() {
 
       if (!store.addToCart(item, quantity)) {
         print(
-            'Could not add item to sale - Must add at least one of an existing item');
+            '\nCould not add item to sale - Must add at least one of an existing item\n');
       }
     }
   }
@@ -50,15 +50,15 @@ void main() {
   bool finished = false;
 
   while (!finished) {
-    print('Your total is ${store.getSalePrice()}');
+    print('\nYour total is \$${store.getSalePrice()}.');
     stdout.write('Please enter your credit card number: ');
     String? creditNum = stdin.readLineSync();
 
     if (store.processPayment(creditNum)) {
-      print('Payment complete!');
+      print('\nPayment complete! Thank you for shopping at the dart store!');
       finished = true;
     } else {
-      print('Invalid credit card number. Please try again.');
+      print('\nInvalid credit card number. Please try again.');
     }
   }
 }

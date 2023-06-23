@@ -5,9 +5,13 @@ class SaleItem {
 
   const SaleItem(this.itemName, this.price, this.desc);
 
+  String toStringDebug() {
+    return 'Item: ${itemName}, Price: ${price}, Description: ${desc}';
+  }
+
   @override
   String toString() {
-    return 'Item: ${itemName}, Price: ${price}, Description: ${desc}';
+    return '${itemName} -- \$${price.toString()} -- ${desc}';
   }
 
   static SaleItem emptySaleItem = SaleItem('', 0, '');

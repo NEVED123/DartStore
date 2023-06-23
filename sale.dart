@@ -21,7 +21,7 @@ class Sale {
     double total = 0;
 
     for (LineItem lineItem in _lineItems) {
-      total += lineItem.item.price * lineItem.quantity;
+      total += lineItem.getSubtotal();
     }
 
     return total;

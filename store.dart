@@ -9,8 +9,10 @@ class Store {
   Store() {
     //In real life, this would be a database request
     _addSaleItem('Banana', 1.00, "The best you'll ever have!");
-    _addSaleItem('Orange', 1.00, "The worst you'll ever have!");
-    _addSaleItem('Apple', 1.00, "It's okay I guess");
+    _addSaleItem('Orange', 1.25, "The worst you'll ever have!");
+    _addSaleItem('Apple', 1.50, "It's okay I guess");
+    _addSaleItem('Tennis Racket', 100,
+        "I literally don't know what that thing is, but it looks cool");
   }
 
   void _addSaleItem(String itemName, double price, String desc) {

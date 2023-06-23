@@ -39,7 +39,6 @@ class Store {
       return false;
     }
 
-    //TODO: fix this line of code
     SaleItem? selectedItem = _saleItems.firstWhere(
         (curr) => curr.itemName == item,
         orElse: () => SaleItem.emptySaleItem);

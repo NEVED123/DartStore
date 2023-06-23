@@ -8,15 +8,15 @@ class Store {
 
   Store() {
     //In real life, this would be a database request
-    _addSaleItem('Banana', 1.00, "The best you'll ever have!");
-    _addSaleItem('Orange', 1.25, "The worst you'll ever have!");
-    _addSaleItem('Apple', 1.50, "It's okay I guess");
-    _addSaleItem('Tennis Racket', 100,
-        "I literally don't know what that thing is, but it looks cool");
+    _addSaleItem(0, '🍌 Banana', 1.00, "The best you'll ever have!");
+    _addSaleItem(1, '🍊 Orange', 1.25, "The worst you'll ever have!");
+    _addSaleItem(2, '🍎 Apple', 1.50, "It's okay I guess");
+    _addSaleItem(3, '🍔 Steamed Ham', 100,
+        "Well, Seymour, you are an odd fellow, but I must say... you steam a good ham.");
   }
 
-  void _addSaleItem(String itemName, double price, String desc) {
-    _saleItems.add(new SaleItem(itemName, price, desc));
+  void _addSaleItem(int id, String itemName, double price, String desc) {
+    _saleItems.add(new SaleItem(id, itemName, price, desc));
   }
 
   void initializeSale() {
@@ -35,14 +35,12 @@ class Store {
     return <LineItem>[];
   }
 
-  bool addToCart(String? item, int? quantity) {
+  bool addToCart(int id, int quantity) {
     if (_sale == null) {
-      print('sale is null');
       return false;
     }
 
-    SaleItem? selectedItem = _saleItems.firstWhere(
-        (curr) => curr.itemName == item,
+    SaleItem selectedItem = _saleItems.firstWhere((curr) => curr.id == id,
         orElse: () => SaleItem.emptySaleItem);
 
     if (selectedItem == SaleItem.emptySaleItem) {

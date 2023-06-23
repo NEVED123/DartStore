@@ -8,10 +8,6 @@ class LineItem {
 
   @override
   String toString() {
-    return '${item.itemName} x ${quantity} ... ${getSubtotal()}';
-  }
-
-  String toStringDebug() {
     return 'Item: ${item.itemName}, Quantity: ${quantity}';
   }
 

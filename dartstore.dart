@@ -8,23 +8,30 @@ void main() {
   Store store = Store();
 
   print('''Welcome to the dart store! The store that aims to hit the target!
-  To start adding an item to your cart, type the name!\n''');
+  To start adding an item to your cart, type the item id!''');
 
   store.initializeSale();
 
   bool checkOut = false;
 
   while (!checkOut) {
-    print('Items for sale:');
+    print('\nItems for sale:');
 
     for (SaleItem item in store.getSaleItems()) {
-      print(item.toString());
+      int id = item.id;
+      String name = item.itemName;
+      double price = item.price;
+      String desc = item.desc;
+      print("${id}. ${name} -- ${price} -- ${desc}");
     }
 
     print('\nCart:');
 
     for (LineItem item in store.getCart()) {
-      print(item.toString());
+      String name = item.item.itemName;
+      double quantity = item.item.price;
+      double subTotal = item.getSubtotal();
+      print("${name} x ${quantity} ... ${subTotal}");
     }
 
     print("\nEnter 'c' to checkout.");
@@ -35,12 +42,14 @@ void main() {
     if (item == 'c') {
       checkOut = true;
     } else {
-      stdout.write('\nQuantity: ');
-      int? quantity = int.tryParse(stdin.readLineSync() ?? '0');
+      int itemId = int.tryParse(item ?? '-1') ?? -1;
 
-      if (!store.addToCart(item, quantity)) {
+      stdout.write('\nQuantity: ');
+      int quantity = int.tryParse(stdin.readLineSync() ?? '0') ?? 0;
+
+      if (!store.addToCart(itemId, quantity)) {
         print(
-            '\nCould not add item to sale - Must add at least one of an existing item\n');
+            '\nCould not add item to sale - Must add at least one of an existing item');
       }
     }
   }
@@ -58,7 +67,7 @@ void main() {
       print('\nPayment complete! Thank you for shopping at the dart store!');
       finished = true;
     } else {
-      print('\nInvalid credit card number. Please try again.');
+      print('Invalid credit card number. Please try again.');
     }
   }
 }

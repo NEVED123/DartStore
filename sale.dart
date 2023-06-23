@@ -8,11 +8,7 @@ class Sale {
     return _lineItems;
   }
 
-  bool addToCart(SaleItem item, int? quantity) {
-    if (quantity == null) {
-      return false;
-    }
-
+  bool addToCart(SaleItem item, int quantity) {
     _lineItems.add(new LineItem(item, quantity));
     return true;
   }

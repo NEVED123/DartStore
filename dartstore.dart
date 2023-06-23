@@ -7,15 +7,18 @@ void main() {
   //Initialize store
   Store store = Store();
 
+  print('\n==========================================================');
   print('''Welcome to the dart store! The store that aims to hit the target!
   To start adding an item to your cart, type the item id!''');
+  print('==========================================================');
 
   store.initializeSale();
 
   bool checkOut = false;
 
   while (!checkOut) {
-    print('\nItems for sale:');
+    print('\n----------------------------------------------------------');
+    print('Items for sale:');
 
     for (SaleItem item in store.getSaleItems()) {
       int id = item.id;

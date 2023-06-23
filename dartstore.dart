@@ -22,28 +22,33 @@ void main() {
       String name = item.itemName;
       double price = item.price;
       String desc = item.desc;
-      print("${id}. ${name} -- \$${price} -- ${desc}");
+      print("(${id}) ${name} -- \$${price} -- ${desc}");
     }
 
     print('\nCart:');
 
     for (LineItem item in store.getCart()) {
       String name = item.item.itemName;
+      int id = item.item.id;
       int quantity = item.quantity;
       double price = item.item.price;
       double subTotal = item.getSubtotal();
-      print("${name}: ${quantity} x \$${price} ... \$${subTotal}");
+      print("(${id}) ${name}: ${quantity} x \$${price} ... \$${subTotal}");
     }
 
     print('\nTotal: \$${store.getSalePrice()}');
 
-    print("\nEnter 'c' to checkout.");
+    print(
+        "\nPut an 'r' before the id to remove from the cart. Enter 'c' to checkout.");
 
     stdout.write('\nItem: ');
     String? item = stdin.readLineSync();
 
     if (item == 'c') {
       checkOut = true;
+    } else if (item?[0] == 'r') {
+      int IdToRemove = int.tryParse(item?[1] ?? '-1') ?? -1;
+      store.removeFromCart(IdToRemove);
     } else {
       int itemId = int.tryParse(item ?? '-1') ?? -1;
 

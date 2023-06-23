@@ -20,6 +20,14 @@ class Sale {
       duplicate.quantity += quantity;
     }
 
+    //Sort cart
+    _lineItems.sort((x, y) => x.item.id.compareTo(y.item.id));
+
+    return true;
+  }
+
+  bool removeFromCart(SaleItem item) {
+    _lineItems.removeWhere((lineItem) => lineItem.item.id == item.id);
     return true;
   }
 

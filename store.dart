@@ -50,6 +50,23 @@ class Store {
     return _sale!.addToCart(selectedItem, quantity);
   }
 
+  bool removeFromCart(int id) {
+    if (_sale == null) {
+      return false;
+    }
+
+    SaleItem selectedItem = _saleItems.firstWhere((curr) => curr.id == id,
+        orElse: () => SaleItem.emptySaleItem);
+
+    print(selectedItem);
+
+    if (selectedItem == SaleItem.emptySaleItem) {
+      return false;
+    }
+
+    return _sale!.removeFromCart(selectedItem);
+  }
+
   bool processPayment(String? creditNum) {
     if (creditNum == null || creditNum == "BAD") {
       return false;

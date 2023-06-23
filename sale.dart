@@ -9,7 +9,17 @@ class Sale {
   }
 
   bool addToCart(SaleItem item, int quantity) {
-    _lineItems.add(new LineItem(item, quantity));
+    LineItem duplicate = _lineItems.firstWhere(
+        (curr) => curr.item.id == item.id,
+        orElse: () => emptyLineItem);
+
+    if (duplicate == emptyLineItem) {
+      _lineItems.add(new LineItem(item, quantity));
+    } else {
+      //Item already exists, add to the quantity
+      duplicate.quantity += quantity;
+    }
+
     return true;
   }
 
@@ -22,4 +32,6 @@ class Sale {
 
     return total;
   }
+
+  static LineItem emptyLineItem = LineItem(SaleItem.emptySaleItem, 0);
 }

@@ -1,10 +1,13 @@
 import 'saleitem.dart';
 
 class LineItem {
-  final SaleItem item;
-  final int quantity;
+  late SaleItem item;
+  late int quantity;
 
-  const LineItem(this.item, this.quantity);
+  LineItem(SaleItem item, int quantity) {
+    this.item = item;
+    this.quantity = quantity;
+  }
 
   @override
   String toString() {

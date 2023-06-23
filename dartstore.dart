@@ -22,17 +22,20 @@ void main() {
       String name = item.itemName;
       double price = item.price;
       String desc = item.desc;
-      print("${id}. ${name} -- ${price} -- ${desc}");
+      print("${id}. ${name} -- \$${price} -- ${desc}");
     }
 
     print('\nCart:');
 
     for (LineItem item in store.getCart()) {
       String name = item.item.itemName;
-      double quantity = item.item.price;
+      int quantity = item.quantity;
+      double price = item.item.price;
       double subTotal = item.getSubtotal();
-      print("${name} x ${quantity} ... ${subTotal}");
+      print("${name}: ${quantity} x \$${price} ... \$${subTotal}");
     }
+
+    print('\nTotal: \$${store.getSalePrice()}');
 
     print("\nEnter 'c' to checkout.");
 
